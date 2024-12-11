@@ -1,0 +1,6 @@
+(feast b c)
+(succumb b)
+(feast c d)
+(succumb c)
+(attack a)
+(overcome a d)

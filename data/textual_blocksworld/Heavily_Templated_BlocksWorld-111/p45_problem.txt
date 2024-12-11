@@ -1,0 +1,2 @@
+As initial conditions I have that, block 1 is clear, arm-empty, block 1 is on top of block 7, block 2 is on top of block 5, block 3 is on top of block 6, block 4 is on top of block 2, block 6 is on top of block 8, block 7 is on top of block 3, block 8 is on top of block 4, and block 5 is on the table.
+My goal is to have that block 1 is on top of block 6, block 2 is on top of block 7, block 3 is on top of block 8, block 4 is on top of block 5, block 5 is on top of block 3, block 7 is on top of block 1, block 8 is on top of block 2, and block 6 is on the table.

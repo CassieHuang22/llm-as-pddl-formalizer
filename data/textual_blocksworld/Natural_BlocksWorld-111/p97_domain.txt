@@ -1,0 +1,8 @@
+Blocksworld is a puzzle domain where the aim is to move a set of blocks to achieve a specific goal configuration. The domain consists of a flat surface, often called the 'table', and an arbitrary number of blocks. Every block can be stacked on top of another block or placed on the table. Blocks can be moved one at a time, and only the block at the top of a stack can be moved. The main actions available in Blocksworld are:
+
+1. **Pick Up (Pick-Up B)**: Picks up block B from the table.
+2. **Put Down (Put-Down B)**: Places block B onto the table.
+3. **Stack (Stack B1 B2)**: Stacks block B1 on top of block B2.
+4. **Unstack (Unstack B1 B2)**: Removes block B1 from the top of block B2.
+
+The goal is to transform an initial configuration of blocks into a desired target configuration using these actions.

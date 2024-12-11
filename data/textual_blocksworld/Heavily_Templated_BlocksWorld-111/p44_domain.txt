@@ -1,0 +1,20 @@
+I am playing with a set of blocks. Here are the actions I can do
+
+   Pickup block
+   Unstack block from another block
+   Putdown block
+   Stack block on another block
+
+I have the following restrictions on my actions:
+    To perform Pickup action, the following facts need to be true: clear block, block on table, arm-empty.
+    Once Pickup action is performed the following facts will be true: holding block.
+    Once Pickup action is performed the following facts will be false:  clear block, block on table, arm-empty.
+    To perform Putdown action, the following facts need to be true: holding block.
+    Once Putdown action is performed the following facts will be true: clear block, block on table, arm-empty.    
+    Once Putdown action is performed the following facts will be false: holding block.
+    To perform Stack action, the following needs to be true: clear block2, holding block1.
+    Once Stack action is performed the following will be true: arm-empty, clear block1, block1 on block2.
+    Once Stack action is performed the following will be false: clear block2, holding block1.
+    To perform Unstack action, the following needs to be true: block1 on block2, clear block1, arm-empty.
+    Once Unstack action is performed the following will be true: holding block1, clear block2.
+    Once Unstack action is performed the following will be false:, block1 on block2, clear block1, arm-empty.

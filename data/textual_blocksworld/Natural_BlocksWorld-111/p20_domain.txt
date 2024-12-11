@@ -1,0 +1,12 @@
+The Blocksworld game is a classic problem used in artificial intelligence research. The fundamental elements of this game are blocks and a table surface. Blocks can be stacked upon one another or placed directly on the table. The ultimate objective is to move blocks from an initial configuration to a specific goal configuration using a series of actions. The actions include:
+
+1. Picking up a block from the table or from another block.
+2. Placing a block onto the table or on top of another block.
+
+There are key rules and constraints to abide by:
+
+1. A block can only be picked up if it has no blocks on top of it (i.e., it is clear).
+2. A block can only be placed onto another block if the latter is clear.
+3. Only one block can be moved at a time.
+
+Players must strategize the sequence of moves to achieve the desired goal configuration while adhering to the game's constraints.

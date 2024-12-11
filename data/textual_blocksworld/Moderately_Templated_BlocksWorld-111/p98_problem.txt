@@ -1,0 +1,2 @@
+As initial conditions I have that, block a is clear, block c is clear, the hand is empty, block a is on top of block b, block b block is on the table, and block c block is on the table.
+My goal is to have that block a is on top of block b, block b is on top of block c, and block c is on the table.

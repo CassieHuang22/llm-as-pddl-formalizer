@@ -1,0 +1,2 @@
+As initial conditions I have that, object d craves object a, harmony, planet object a, planet object b, planet object c, province object b, province object c and province object d.
+My goal is to have that object b craves object c and object c craves object a.

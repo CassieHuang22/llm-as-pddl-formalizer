@@ -1,0 +1,1 @@
+In the Blocksworld game, you start with four blocks placed directly on the table: Block 3, Block 4, Block 1, and Block 2. Your task is to rearrange these blocks so that in the end, Block 4, Block 2, Block 1, and Block 3 are all on the table in that order. Your robotic arm is currently empty and ready to start moving the blocks around to achieve the final arrangement.

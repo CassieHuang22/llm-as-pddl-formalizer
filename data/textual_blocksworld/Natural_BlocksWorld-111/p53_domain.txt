@@ -1,0 +1,16 @@
+Blocksworld is a classic AI planning problem centered around a set of blocks and a robot arm that can manipulate these blocks. The world consists of a table and several distinct blocks, each identified by a unique label. The robot arm can pick up and move blocks from one location to another, with the objective of achieving a specific configuration of blocks, often stacked in a certain order or arranged in particular positions.
+
+Key components of the Blocksworld domain include:
+
+1. **Blocks**: Objects labeled uniquely, which can be manipulated by the robot arm. Each block can either be on the table, on top of another block, or held by the robot arm.
+2. **Table**: A flat surface where blocks can be placed. The table is the base level where blocks start and where they can be moved if not stacked on other blocks.
+3. **Robot Arm**: An automated agent capable of picking up, holding, and placing blocks. The robot arm can hold only one block at a time.
+
+Key actions in the Blocksworld domain include:
+
+1. **Pick Up**: The robot arm can pick up a block from the table or from the top of another block if the arm is empty.
+2. **Put Down**: The robot arm can place a block it is holding onto the table.
+3. **Stack**: The robot arm can place a block it is holding onto another block, providing the target block has no other block on top of it.
+4. **Unstack**: The robot arm can remove a block from the top of another block if the arm is empty and the target block is clear.
+
+The goal in a typical Blocksworld scenario is to obtain a desired configuration of blocks, which is specified as the final arrangement that needs to be achieved from an initial arrangement. Constraints may include ensuring that certain blocks are always on the table or that specific stacks of blocks are formed in a particular order.

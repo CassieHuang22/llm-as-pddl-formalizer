@@ -1,0 +1,17 @@
+(define (problem blocksworld-p98)
+  (:domain blocksworld)
+  (:objects a b c )
+  (:init 
+    (on-table b)
+    (on a b)
+    (clear a)
+    (on-table c)
+    (clear c)
+    (arm-empty)
+  )
+  (:goal (and 
+    (on-table c)
+    (on b c)
+    (on a b)
+  ))
+)

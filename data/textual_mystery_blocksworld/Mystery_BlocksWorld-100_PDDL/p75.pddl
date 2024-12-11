@@ -1,0 +1,17 @@
+(define (problem mystery_blocksworld-p75)
+  (:domain mystery_blocksworld)
+  (:objects a b c d )
+  (:init 
+    (craves a c)
+    (craves d b)
+    (harmony)
+    (planet b)
+    (planet c)
+    (province a)
+    (province d)
+  )
+  (:goal (and 
+    (craves a b)
+    (craves c a)
+  ))
+)

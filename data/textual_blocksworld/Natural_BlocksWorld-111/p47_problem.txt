@@ -1,0 +1,1 @@
+You have four blocks arranged as follows: Block 1, Block 4, Block 3, and Block 2 are all sitting individually on the table. Your arm is currently free and not holding any block. The goal is to rearrange the blocks so that Block 3 remains on the table with Block 2 stacked on top of it, and Block 1 remains on the table with Block 4 stacked on top of it.

@@ -1,0 +1,17 @@
+Blocksworld is a classic AI planning domain involving a set of blocks that can be stacked on top of each other or placed on a table. The objective is to move the blocks to achieve a certain goal configuration given an initial configuration. The world consists of the following elements:
+
+1. **Blocks:** Identifiable objects that can be stacked. Each block can either sit on another block or directly on the table.
+
+2. **Table:** A flat surface where blocks can be placed directly if they are not stacked on another block.
+
+The following actions can be performed in the Blocksworld domain:
+
+1. **Pick up a block:** This action involves picking up a block that is either on the table or on top of another block. The block must be clear (i.e., no other block is on top of it) and the robot hand must be empty to perform this action.
+
+2. **Put down a block:** This action places a held block onto the table. The block must currently be held by the robot hand to perform this action.
+
+3. **Stack a block:** This action places a held block onto another block. The target block must be clear and the robot hand must hold a block to perform this action.
+
+4. **Unstack a block:** This action picks up a block that is sitting on another block. The robot hand must be empty and the block to be picked up must be clear to perform this action.
+
+The goal of the game is to achieve a specific arrangement of blocks starting from a given initial state. Complex configurations can involve several layers of stacking, and the challenge is to find the sequence of actions that transforms the initial state into the goal state efficiently.

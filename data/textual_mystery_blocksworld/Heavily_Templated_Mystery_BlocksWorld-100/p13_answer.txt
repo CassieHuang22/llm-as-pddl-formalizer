@@ -1,0 +1,2 @@
+(attack d)
+(overcome d a)

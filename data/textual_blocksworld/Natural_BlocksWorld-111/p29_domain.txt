@@ -1,0 +1,5 @@
+The Blocksworld domain is a classic planning and artificial intelligence problem where the goal is to move a set of blocks to achieve a specified configuration. The domain consists of a table surface and a set of blocks that can be stacked on top of each other. Each block can either be on the table, on another block, or have other blocks placed on top of it. There are several actions that can be taken within the Blocksworld domain:
+1. Pick-up: An action where an agent picks up a block from the table.
+2. Put-down: An action where an agent puts down a block onto the table.
+3. Stack: An action where an agent stacks one block onto another block.
+4. Unstack: An action where an agent un-stacks a block from another block. The objective is to transform an initial configuration of blocks into a goal configuration using these actions while adhering to certain rules such as only one block can be moved at a time and a block cannot be moved if there is another block on top of it. Blocksworld problems are typically used to study concepts such as planning, reasoning, and problem-solving in artificial intelligence.

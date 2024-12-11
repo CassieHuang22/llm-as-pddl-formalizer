@@ -1,0 +1,1 @@
+In this Blocksworld game, you start with three blocks arranged as follows: Block 3 and Block 2 are both on the table, while Block 1 rests on top of Block 2. Your arm is currently empty. Your goal is to rearrange the blocks so that Block 3 remains on the table, Block 2 is placed on top of Block 3, and Block 1 is positioned on top of Block 2.

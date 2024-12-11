@@ -1,0 +1,1 @@
+Blocksworld Problem: There are 10 blocks labeled A through J. Initially, all the blocks are randomly placed in a single stack in descending order from A on the table that is: (Table: [A, B, C, D, E, F, G, H, I, J]). The goal is to rearrange these blocks into three stacks: Stack 1: [A, B, C], Stack 2: [D, E, F, G], Stack 3: [H, I, J]. 

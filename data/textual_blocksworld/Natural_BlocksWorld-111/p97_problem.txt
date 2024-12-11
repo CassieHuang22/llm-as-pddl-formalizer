@@ -1,0 +1,13 @@
+In this Blocksworld problem, we will consider a simple scenario with 2 blocks: Block1 and Block2. The initial state of the blocks is as follows:
+
+**Initial State**:
+- Block1 is on the table.
+- Block2 is on Block1.
+
+The goal is to achieve the following configuration:
+
+**Goal State**:
+- Block2 is on the table.
+- Block1 is on the table.
+
+To solve this problem, you will need to use the available actions to rearrange the blocks from the initial state to the goal state.

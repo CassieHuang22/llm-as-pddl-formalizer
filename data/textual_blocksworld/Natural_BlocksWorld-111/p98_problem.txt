@@ -1,0 +1,1 @@
+The Blocksworld problem involves three blocks identified as A, B, and C. Initially, block A is on top of block B, and block B is on the table. Block C is also on the table. The goal is to rearrange these blocks such that block B is on top of block C, and block A is on top of block B.
