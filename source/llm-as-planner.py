@@ -26,7 +26,7 @@ INDEX_START = eval(args.index_start)
 INDEX_END = eval(args.index_end)
 
 OPEN_SOURCED_MODELS = ["meta-llama/Meta-Llama-3.1-8B-Instruct", "google/gemma-2-9b-it", "meta-llama/Llama-3.1-70B-Instruct", "google/gemma-2-27b-it"]
-PROMPT = "You are a PDDL expert."
+PROMPT = ""
 if MODEL in OPEN_SOURCED_MODELS:
     if "llama" in MODEL:
         ENGINE = HuggingEngine(model_id = MODEL, prompt_pipeline=LLAMA3_PIPELINE, use_auth_token=True, model_load_kwargs={"device_map": "auto"})
@@ -93,7 +93,14 @@ async def run_planner_open_sourced(domain, data, problem):
     domain_description = open(f'../data/textual_{domain}/{data}/{problem}_domain.txt').read()
     problem_description = open(f'../data/textual_{domain}/{data}/{problem}_problem.txt').read()
 
-    message = f"Here is a game we are playing.\n{domain_description}\n{problem_description}\nWrite the domain and problem files in minimal PDDL."
+    if domain == "blocksworld":
+        available_actions = '(PICK-UP block): pick up a block from the table\n(PUT-DOWN block): put down a block on the table\n(STACK block1 block2): stack block1 onto block2\n(UNSTACK block1 block2): unstack block1 from block2'
+        example_answer = 'PLAN:\n(PICK-UP A)\n(STACK A B)\n(UNSTACK A B)\n(PUT-DOWN A)\n'
+    elif domain == "mystery_blocksworld":
+        available_actions = '(ATTACK object): attack object\n(SUCCUMB object): succumb\n(OVERCOME object1 object2): overcome object1 from object2\n(FEAST object1 object2): feast object1 from object2'
+        example_answer = 'PLAN:\n(ATTACK A)\n(OVERCOME A B)\n(FEAST A B)\n(SUCCUMB A)\n'
+
+    message = f"Here is a game we are playing.\n\n{domain_description}\n\n{problem_description}\n\nWrite the plan that would solve this problem.\n\nThese are the available actions:\n{available_actions}\n\nHere is what the output should look like:\n{example_answer}\n"
 
     response = await AI.chat_round_str(message)
 

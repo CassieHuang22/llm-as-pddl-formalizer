@@ -1,0 +1,20 @@
+
+(PICK-UP Block 7)
+(UNSTACK Block 7 Block 4)
+(PUT-DOWN Block 7)
+(PICK-UP Block 4)
+(STACK Block 4 Block 8)
+(PICK-UP Block 1)
+(UNSTACK Block 1 Block 6)
+(PUT-DOWN Block 1)
+(PICK-UP Block 6)
+(STACK Block 6 Block 7)
+(PICK-UP Block 2)
+(UNSTACK Block 2 Block 8)
+(PUT-DOWN Block 2)
+(PICK-UP Block 8)
+(STACK Block 8 Block 3)
+(PICK-UP Block 5)
+(STACK Block 5 Block 6)
+
+

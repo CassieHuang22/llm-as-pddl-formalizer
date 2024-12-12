@@ -1,0 +1,8 @@
+(PICK-UP Block 3)
+(PUT-DOWN Block 3)
+(PICK-UP Block 4)
+(PUT-DOWN Block 4)
+(PICK-UP Block 1)
+(PUT-DOWN Block 1)
+(PICK-UP Block 2)
+(PUT-DOWN Block 2) 
