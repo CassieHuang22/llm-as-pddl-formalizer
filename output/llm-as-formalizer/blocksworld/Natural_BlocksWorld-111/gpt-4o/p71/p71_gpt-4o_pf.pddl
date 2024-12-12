@@ -1,0 +1,37 @@
+(define (problem block-arrangement)
+  (:domain blocksworld)
+  (:objects
+    block1 block2 block3 block4 block5 block6 block7 block8 
+    block9 block10 block11 block12 block13 block14 block15
+  )
+  (:init
+    (ontable block6) (on block11 block6)
+    (on block4 block11) (on block12 block4)
+    (on block7 block12) (on block5 block7)
+    (on block14 block5)
+    (ontable block3) (on block1 block3) (on block13 block1)
+    (ontable block2) (on block9 block2)
+    (ontable block8) (on block15 block8) (on block10 block15)
+    (clear block14) (clear block13) (clear block9) (clear block10)
+    (arm-empty)
+  )
+  (:goal
+    (and
+      (ontable block14)
+      (ontable block6)
+      (ontable block11)
+      (ontable block15)
+      (ontable block3)
+      (ontable block10)
+      (ontable block4)
+      (ontable block13)
+      (ontable block5)
+      (ontable block1)
+      (ontable block8)
+      (ontable block12)
+      (ontable block9)
+      (ontable block7)
+      (on block2 block5)
+    )
+  )
+)

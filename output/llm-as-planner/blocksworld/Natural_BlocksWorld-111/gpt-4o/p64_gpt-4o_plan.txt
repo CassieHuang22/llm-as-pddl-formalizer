@@ -1,0 +1,6 @@
+(unstack block3 block7)
+(putdown block3)
+(unstack block7 block2)
+(putdown block7)
+(pickup block5)
+(stack block5 block6)

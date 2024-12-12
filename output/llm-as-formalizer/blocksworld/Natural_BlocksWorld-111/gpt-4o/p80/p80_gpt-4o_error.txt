@@ -1,0 +1,74 @@
+ --- OK.
+ Match tree built with 480 nodes.
+
+PDDL problem description loaded: 
+	Domain: BLOCKSWORLD
+	Problem: BLOCKSWORLD-PROBLEM
+	#Actions: 480
+	#Fluents: 271
+Goals found: 16
+Goals_Edges found: 17
+Starting search with 1-BFWS...
+--[7 / 0]--
+--[7 / 2]--
+--[6 / 0]--
+--[6 / 5]--
+--[5 / 0]--
+--[5 / 4]--
+--[4 / 0]--
+--[4 / 4]--
+--[3 / 0]--
+--[3 / 4]--
+--[2 / 0]--
+--[2 / 4]--
+--[1 / 0]--
+--[1 / 2]--
+--[1 / 3]--
+--[1 / 4]--
+--[1 / 5]--
+--[1 / 6]--
+--[1 / 7]--
+--[1 / 8]--
+--[1 / 9]--
+--[1 / 10]--
+--[1 / 11]--
+--[1 / 12]--
+--[1 / 13]--
+--[1 / 14]--
+--[1 / 15]--
+--[1 / 16]--
+--[1 / 17]--
+--[1 / 18]--
+--[1 / 19]--
+--[1 / 20]--
+--[1 / 21]--
+--[1 / 22]--
+--[1 / 23]--
+--[1 / 24]--
+--[1 / 25]--
+--[1 / 26]--
+Total time: 0.333542
+Nodes generated during search: 34476
+Nodes expanded during search: 32196
+Plan found with cost: NOTFOUND
+Fast-BFS search completed in 0.333542 secs
+Starting search with BFWS(novel,land,h_(add)ff)...
+Landmarks found: 21
+Landmarks_Edges found: 27
+--[17 / 4294967295]--
+--[17 / 10]--
+--[16 / 10]--
+--[16 / 8]--
+--[14 / 8]--
+--[13 / 8]--
+--[13 / 6]--
+--[11 / 6]--
+--[10 / 6]--
+--[10 / 4]--
+--[8 / 4]--
+--[7 / 4]--
+--[5 / 4]--
+--[5 / 2]--
+--[5 / 1]--
+--[4 / 1]--
+--[2 / 1]--

@@ -34,15 +34,15 @@ if MODEL in OPEN_SOURCED_MODELS:
         ENGINE = HuggingEngine(model_id = MODEL, prompt_pipeline=GEMMA_PIPELINE, use_auth_token=True)
     AI = Kani(ENGINE, system_prompt=PROMPT)
 else:
-    OPENAI_API_KEY = open(f'../../../_private/key.txt').read()
+    OPENAI_API_KEY = open(f'../../_private/key.txt').read()
     client = OpenAI(api_key=OPENAI_API_KEY)
 
 def run_planner_gpt(domain, data, problem, model, force_json=False):
     output_format = "json_object" if force_json else "text"
 
 
-    domain_description = open(f'../../data/textual_{domain}/{data}/{problem}_domain.txt').read()
-    problem_description = open(f'../../data/textual_{domain}/{data}/{problem}_problem.txt').read()
+    domain_description = open(f'../data/textual_{domain}/{data}/{problem}_domain.txt').read()
+    problem_description = open(f'../data/textual_{domain}/{data}/{problem}_problem.txt').read()
 
     if domain == "blocksworld":
         available_actions = '(PICK-UP block): pick up a block from the table\n(PUT-DOWN block): put down a block on the table\n(STACK block1 block2): stack block1 onto block2\n(UNSTACK block1 block2): unstack block1 from block2'
@@ -76,21 +76,22 @@ def run_planner_gpt(domain, data, problem, model, force_json=False):
     plan = return_dict['plan']
 
 
-    plan_path = f'../../output/llm-as-planner/{domain}/{data}/{model}/{problem}_{model}_plan.txt'
+    plan_path = f'../output/llm-as-planner/{domain}/{data}/{model}/{problem}_{model}_plan.txt'
     
 
     if not os.path.exists(os.path.dirname(plan_path)):
         os.makedirs(os.path.dirname(plan_path))
         
     with open(plan_path, 'w') as file:
-        file.write(plan)
+        for line in plan:
+            file.write(f"{line}\n")
     
     return plan
 
 
 async def run_planner_open_sourced(domain, data, problem):
-    domain_description = open(f'../../data/textual_{domain}/{data}/{problem}_domain.txt').read()
-    problem_description = open(f'../../data/textual_{domain}/{data}/{problem}_problem.txt').read()
+    domain_description = open(f'../data/textual_{domain}/{data}/{problem}_domain.txt').read()
+    problem_description = open(f'../data/textual_{domain}/{data}/{problem}_problem.txt').read()
 
     message = f"Here is a game we are playing.\n{domain_description}\n{problem_description}\nWrite the domain and problem files in minimal PDDL."
 
@@ -99,7 +100,7 @@ async def run_planner_open_sourced(domain, data, problem):
     
 
     _, model_name = MODEL.split('/')
-    plan_path = f'../../output/llm-as-planner/{domain}/{data}/{model_name}/{problem}_{model_name}_plan.txt'
+    plan_path = f'../output/llm-as-planner/{domain}/{data}/{model_name}/{problem}_{model_name}_plan.txt'
     
 
     if not os.path.exists(os.path.dirname(plan_path)):
@@ -114,6 +115,7 @@ async def run_planner_open_sourced(domain, data, problem):
 def run_gpt_batch(domain, model, data, index_start, index_end):
     for problem_number in range(index_start, index_end):
         problem_name = 'p0' + str(problem_number) if problem_number < 10 else 'p' + str(problem_number)
+        print(f"Running {problem_name}")
         force_json = True if model != "o1-preview" else False
         run_planner_gpt(domain=domain, data=data, problem=problem_name, model=model, force_json=force_json)
 

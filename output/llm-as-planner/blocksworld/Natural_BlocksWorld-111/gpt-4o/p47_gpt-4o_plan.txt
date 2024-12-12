@@ -1,0 +1,4 @@
+(pickup  block2)
+(stack  block2  block3)
+(pickup  block4)
+(stack  block4  block1)

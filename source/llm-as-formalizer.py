@@ -34,15 +34,15 @@ if MODEL in OPEN_SOURCED_MODELS:
         ENGINE = HuggingEngine(model_id = MODEL, prompt_pipeline=GEMMA_PIPELINE, use_auth_token=True)
     AI = Kani(ENGINE, system_prompt=PROMPT)
 else:
-    OPENAI_API_KEY = open(f'../../../_private/key.txt').read()
+    OPENAI_API_KEY = open(f'../../_private/key.txt').read()
     client = OpenAI(api_key=OPENAI_API_KEY)
 
 def run_formalizer_gpt(domain, data, problem, model, force_json=False):
     output_format = "json_object" if force_json else "text"
 
 
-    domain_description = open(f'../../data/textual_{domain}/{data}/{problem}_domain.txt').read()
-    problem_description = open(f'../../data/textual_{domain}/{data}/{problem}_problem.txt').read()
+    domain_description = open(f'../data/textual_{domain}/{data}/{problem}_domain.txt').read()
+    problem_description = open(f'../data/textual_{domain}/{data}/{problem}_problem.txt').read()
 
     prompt = f"You are a PDDL expert. Here is a game we are playing.\n{domain_description}\n{problem_description}\nWrite the domain and problem files in minimal PDDL."
 
@@ -71,8 +71,8 @@ def run_formalizer_gpt(domain, data, problem, model, force_json=False):
     problem_file = return_dict["problem file"]
 
 
-    df_path = f'../../output/llm-as-formalizer/{domain}/{data}/{model}/{problem}/{problem}_{model}_df.pddl'
-    pf_path = f'../../output/llm-as-formalizer/{domain}/{data}/{model}/{problem}/{problem}_{model}_pf.pddl'
+    df_path = f'../output/llm-as-formalizer/{domain}/{data}/{model}/{problem}/{problem}_{model}_df.pddl'
+    pf_path = f'../output/llm-as-formalizer/{domain}/{data}/{model}/{problem}/{problem}_{model}_pf.pddl'
 
     if not os.path.exists(os.path.dirname(df_path)):
         os.makedirs(os.path.dirname(df_path))
@@ -87,8 +87,8 @@ def run_formalizer_gpt(domain, data, problem, model, force_json=False):
 
 
 async def run_formalizer_open_sourced(domain, data, problem):
-    domain_description = open(f'../../data/textual_{domain}/{data}/{problem}_domain.txt').read()
-    problem_description = open(f'../../data/textual_{domain}/{data}/{problem}_problem.txt').read()
+    domain_description = open(f'../data/textual_{domain}/{data}/{problem}_domain.txt').read()
+    problem_description = open(f'../data/textual_{domain}/{data}/{problem}_problem.txt').read()
 
     message = f"Here is a game we are playing.\n{domain_description}\n{problem_description}\nWrite the domain and problem files in minimal PDDL."
 
@@ -105,8 +105,8 @@ async def run_formalizer_open_sourced(domain, data, problem):
     problem_file = problem_file.replace("pddl", "").replace("lisp", "")
 
     _, model_name = MODEL.split('/')
-    df_path = f'../../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem}/{problem}_{model_name}_df.pddl'
-    pf_path = f'../../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem}/{problem}_{model_name}_pf.pddl'
+    df_path = f'../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem}/{problem}_{model_name}_df.pddl'
+    pf_path = f'../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem}/{problem}_{model_name}_pf.pddl'
 
     if not os.path.exists(os.path.dirname(df_path)):
         os.makedirs(os.path.dirname(df_path))
@@ -124,6 +124,7 @@ def run_gpt_batch(domain, model, data, index_start, index_end):
     for problem_number in range(index_start, index_end):
         problem_name = 'p0' + str(problem_number) if problem_number < 10 else 'p' + str(problem_number)
         force_json = True if model != "o1-preview" else False
+        print(f"Running {problem_name}")
         run_formalizer_gpt(domain=domain, data=data, problem=problem_name, model=model, force_json=force_json)
 
 async def run_open_sourced_batch(domain, data, index_start, index_end):

@@ -1,0 +1,53 @@
+ --- OK.
+ Match tree built with 480 nodes.
+
+PDDL problem description loaded: 
+	Domain: BLOCKSWORLD
+	Problem: BLOCKSWORLD-PROBLEM
+	#Actions: 480
+	#Fluents: 271
+Goals found: 15
+Goals_Edges found: 15
+Starting search with 1-BFWS...
+--[15 / 0]--
+--[15 / 2]--
+--[14 / 0]--
+--[14 / 5]--
+--[13 / 0]--
+--[13 / 3]--
+--[13 / 4]--
+--[13 / 5]--
+--[12 / 0]--
+--[12 / 3]--
+--[12 / 4]--
+--[12 / 5]--
+--[12 / 6]--
+--[12 / 7]--
+--[12 / 8]--
+--[12 / 9]--
+--[12 / 10]--
+--[12 / 11]--
+--[12 / 12]--
+--[12 / 13]--
+Total time: 0.033548
+Nodes generated during search: 3846
+Nodes expanded during search: 3052
+Plan found with cost: NOTFOUND
+Fast-BFS search completed in 0.033548 secs
+Starting search with BFWS(novel,land,h_(add)ff)...
+Landmarks found: 30
+Landmarks_Edges found: 45
+--[45 / 4294967295]--
+--[45 / 30]--
+--[44 / 30]--
+--[44 / 28]--
+--[42 / 28]--
+--[41 / 28]--
+--[41 / 27]--
+--[39 / 27]--
+--[38 / 27]--
+Total time: 0.945207
+Nodes generated during search: 5881
+Nodes expanded during search: 2793
+Plan found with cost: NOTFOUND
+BFS search completed in 0.945207 secs

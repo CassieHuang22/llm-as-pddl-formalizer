@@ -1,0 +1,29 @@
+
+
+task contains conditional effects. turning off state domination.
+
+ --- OK.
+ Match tree built with 220 nodes.
+
+PDDL problem description loaded: 
+	Domain: BLOCKSWORLD
+	Problem: BLOCKSWORLD-TASK
+	#Actions: 220
+	#Fluents: 131
+Goals found: 10
+Goals_Edges found: 10
+Starting search with 1-BFWS...
+Total time: 2.69995e-05
+Nodes generated during search: 0
+Nodes expanded during search: 0
+Plan found with cost: NOTFOUND
+Fast-BFS search completed in 2.69995e-05 secs
+Starting search with BFWS(novel,land,h_(add)ff)...
+Landmarks found: 10
+Landmarks_Edges found: 10
+--[7 / 4294967295]--
+Total time: 3.49995e-05
+Nodes generated during search: 1
+Nodes expanded during search: 0
+Plan found with cost: NOTFOUND
+BFS search completed in 3.49995e-05 secs

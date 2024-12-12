@@ -1,0 +1,3 @@
+
+unknown constant TABLE in literal CLEAR. check input files
+

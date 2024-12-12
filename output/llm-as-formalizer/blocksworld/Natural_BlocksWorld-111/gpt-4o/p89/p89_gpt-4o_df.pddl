@@ -1,0 +1,31 @@
+(define (domain blocksworld)
+    (:requirements :strips :typing)
+    (:types block)
+    (:predicates
+        (on-table ?b - block)
+        (on ?x - block ?y - block)
+        (clear ?b - block)
+        (holding ?b - block)
+        (arm-empty)
+    )
+    (:action pick-up
+        :parameters (?b - block)
+        :precondition (and (clear ?b) (on-table ?b) (arm-empty))
+        :effect (and (holding ?b) (not (on-table ?b)) (not (arm-empty)) (not (clear ?b)))
+    )
+    (:action put-down
+        :parameters (?b - block)
+        :precondition (holding ?b)
+        :effect (and (on-table ?b) (clear ?b) (arm-empty) (not (holding ?b)))
+    )
+    (:action stack
+        :parameters (?x - block ?y - block)
+        :precondition (and (holding ?x) (clear ?y))
+        :effect (and (on ?x ?y) (clear ?x) (arm-empty) (not (holding ?x)) (not (clear ?y)))
+    )
+    (:action unstack
+        :parameters (?x - block ?y - block)
+        :precondition (and (on ?x ?y) (clear ?x) (arm-empty))
+        :effect (and (holding ?x) (clear ?y) (not (on ?x ?y)) (not (clear ?x)) (not (arm-empty)))
+    )
+)

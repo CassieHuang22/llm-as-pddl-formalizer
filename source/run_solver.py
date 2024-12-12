@@ -18,8 +18,8 @@ def run_solver(domain, data, problem, model, solver):
     else:
         model_name = model
 
-    domain_file = open(f'../../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem}/{problem}_{model_name}_df.pddl').read()
-    problem_file = open(f'../../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem}/{problem}_{model_name}_pf.pddl').read()
+    domain_file = open(f'../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem}/{problem}_{model_name}_df.pddl').read()
+    problem_file = open(f'../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem}/{problem}_{model_name}_pf.pddl').read()
 
 
     plan_found = None
@@ -71,9 +71,10 @@ def run_solver_batch(domain, model, data, index_start, index_end, solver):
     attempts = 3
     for problem in range(index_start, index_end):
         problem_name = "p0" + str(problem) if problem < 10 else "p" + str(problem)
+        print(f"Running {problem_name}")
         for i in range(attempts):
             try:
-                plan_found, result = run_solver(domain, data, problem_name, model, solver)
+                plan_found, result = run_solver(domain, data, problem_name, model, solver)               
             except:
                 if i < attempts - 1:
                     continue
@@ -81,13 +82,17 @@ def run_solver_batch(domain, model, data, index_start, index_end, solver):
                     raise
             break
         if plan_found:
-            plan_path = f'../../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem_name}/{problem_name}_{model_name}_plan.txt'
+            plan_path = f'../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem_name}/{problem_name}_{model_name}_plan.txt'
             if not os.path.exists(os.path.dirname(plan_path)):
                 os.makedirs(os.path.dirname(plan_path))
+            if "Plan found with cost: 0" in result:
+                plan = ''
+            else:
+                plan = result['plan']
             with open(plan_path, 'w') as plan_file:
-                plan_file.write(result)
+                plan_file.write(plan)
         else:
-            error_path = f'../../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem_name}/{problem_name}_{model_name}_error.txt'
+            error_path = f'../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem_name}/{problem_name}_{model_name}_error.txt'
             if not os.path.exists(os.path.dirname(error_path)):
                 os.makedirs(os.path.dirname(error_path))
             with open(error_path, 'w') as error_file:
@@ -103,5 +108,5 @@ if __name__=="__main__":
     INDEX_END = eval(args.index_end)
     SOLVER = args.solver
 
-    run_solver_batch(domain=DOMAIN, model=MODEL, data=DATA, index_start=INDEX_START, index_end=INDEX_END)
+    run_solver_batch(domain=DOMAIN, model=MODEL, data=DATA, index_start=INDEX_START, index_end=INDEX_END, solver=SOLVER)
 

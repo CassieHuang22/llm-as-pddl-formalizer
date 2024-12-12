@@ -1,0 +1,8 @@
+(unstack     block13     block12)
+(putdown     block13)
+(unstack     block10     block4)
+(putdown     block10)
+(unstack     block3     block2)
+(putdown     block3)
+(unstack     block2     block7)
+(putdown     block2)

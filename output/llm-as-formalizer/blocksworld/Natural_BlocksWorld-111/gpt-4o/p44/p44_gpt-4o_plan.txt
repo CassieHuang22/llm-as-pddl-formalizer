@@ -1,0 +1,8 @@
+(pickupfromtable     block7)
+(stackonblock     block7     block2)
+(pickupfromblock     block14     block8)
+(putdownontable     block14)
+(pickupfromtable     block13)
+(stackonblock     block13     block7)
+(pickupfromtable     block10)
+(stackonblock     block10     block9)
