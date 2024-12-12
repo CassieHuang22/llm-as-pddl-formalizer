@@ -2,14 +2,18 @@
 **llm-as-pddl-formalizer** is a set of data and pipeline that uses LLMs to generate PDDL.
 
 ## Requirements
-To run the pipline, the following are needed:
-- OpenAI: your OpenAI API key should replace the following line (line 37 in `llm-as-formalizer.py` and `llm-as-planner.py`):
+To run the pipeline, the following are needed:
+- OpenAI: your OpenAI API key should replace the following line (line 37 in `source/llm-as-formalizer.py` and `source/llm-as-planner.py`):
 ```
 OPENAI_API_KEY = open(f'../../_private/key.txt').read()
 ```
 - Kani: install Kani using the following:
 ```
 pip install "kani[all]" torch 'accelerate>=0.26.0'
+```
+- VAL: follow VAL GitHub repository for instructions to install VAL, then change the following line (line 35 in `source/run_val.py`) to the VAL executable:
+```
+validate_executable = "../../VAL/build/macos64/Release/bin/Validate"
 ```
 
 ## Datasets
@@ -31,8 +35,7 @@ All folders containing textual descriptions contain domain descriptions (`p*_dom
 ## LLM-as-Formalizer
 To generate PDDL files from textual descriptions, run the following:
 ```
-cd source
-python3 llm-as-formalizer.py --domain DOMAIN --model MODEL --data DATA --index_start INDEX_START --index_end INDEX_END
+python3 source/llm-as-formalizer.py --domain DOMAIN --model MODEL --data DATA --index_start INDEX_START --index_end INDEX_END
 ```
 where
 - `DOMAIN` is which domain to evaluate (`blocksworld` or `mystery_blocksworld`)
@@ -43,28 +46,29 @@ where
 
 After generating the PDDL, we can run the solver with the following:
 ```
-python3.11 run_solver.py --domain DOMAIN --model MODEL --data DATA --index_start INDEX_START --index_end INDEX_END --solver SOLVER   
+python3 source/run_solver.py --domain DOMAIN --model MODEL --data DATA --index_start INDEX_START --index_end INDEX_END --solver SOLVER   
 ```
 where 
 - `DOMAIN`, `MODEL`, `DATA`, `INDEX_START` and `INDEX_END` are the same as above
 - `SOLVER` is optional and is which solver to use (`["lama-first", "dual-bfws-ffparser"]`). The default solver is `"dual-bfws-ffparser"`.
 
 output will be written in `/outputs/llm-as-formalizer/DOMAIN/DATA/MODEL/`
+**NOTE**: open-sourced models (`["meta-llama/Meta-Llama-3.1-8B-Instruct", "google/gemma-2-9b-it", "meta-llama/Llama-3.1-70B-Instruct", "google/gemma-2-27b-it"]`) must be manually-inspected so that the format can be used with VAL. Output from GPT models are in the correct format.
 
 ## LLM-as-Planner
 To run the LLM-as-Planner baseline, run the following:
 ```
 cd source
-python3 llm-as-planner.py --domain DOMAIN --model MODEL --data DATA --index_start INDEX_START --index_end INDEX_END
+python3 source/llm-as-planner.py --domain DOMAIN --model MODEL --data DATA --index_start INDEX_START --index_end INDEX_END
 ```
 where `DOMAIN`, `MODEL`, `DATA`, `INDEX_START` and `INDEX_END`are the same as above.
 
 output will be written in `/output/llm-as-planner/DOMAIN/DATA/MODEL/`
 
 ## Evaluation
-To evaluate the result of LLM-as-Formalizer or LLM-as-Planner, run the following:
+To evaluate the result of LLM-as-Formalizer or LLM-as-Planner using VAL, run the following:
 ```
-python3 run_val.py --domain DOMAIN --model MODEL --data DATA --index_start INDEX_START --index_end INDEX_END --prediction_type PREDICTION_TYPE --csv_result
+python3 source/run_val.py --domain DOMAIN --model MODEL --data DATA --index_start INDEX_START --index_end INDEX_END --prediction_type PREDICTION_TYPE --csv_result
 ```
 
 where
