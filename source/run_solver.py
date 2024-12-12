@@ -85,7 +85,7 @@ def run_solver_batch(domain, model, data, index_start, index_end, solver):
             plan_path = f'../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem_name}/{problem_name}_{model_name}_plan.txt'
             if not os.path.exists(os.path.dirname(plan_path)):
                 os.makedirs(os.path.dirname(plan_path))
-            if "Plan found with cost: 0" in result:
+            if "Plan found with cost: 0" in result or "The empty plan solves it" in result:
                 plan = ''
             else:
                 plan = result['plan']
