@@ -1,0 +1,7 @@
+In this logistics scenario, we have a variety of packages, cities, trucks, airplanes, and locations. Initially, there are five packages, named package1 through package5. Likewise, there are ten cities, each numbered from city1 to city10, with each city having two specific locations: one general location and another designated as an airport. The transportation means include 10 trucks (truck1 to truck10) and 4 airplanes (plane1 to plane4).
+
+To describe the initial set-up: package5 is at the airport location of city1, package4 is at the airport in city7, package3 is stationed at the airport of city3, package2 is located at the general area of city10, and package1 resides at the airport in city2.
+
+Each city has its corresponding trucks located at the general area. For airplanes, plane1 is currently at the airport in city6, plane2 and plane4 are at the airport in city3, and plane3 is situated at the airport in city7.
+
+The goal is to transport these packages to their specific target locations: package5 needs to be at the airport in city4, package4 should be moved to the general area of city6, package3's destination is the general area of city1, package2 needs to reach the airport area of city9, and package1 should be delivered to the general area in city3.

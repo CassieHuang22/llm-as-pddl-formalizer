@@ -1,0 +1,15 @@
+In the Logistics game, you are tasked with moving packages between various locations using trucks and airplanes. Here's how you can perform different actions: 
+
+1. To load a package onto a truck at a specific location, ensure both the package and the truck are at that location. Use the command 'load-truck package truck location' to complete this action. Remember, once loaded, the package is no longer at the location.
+
+2. To load a package onto an airplane, make sure both the package and the airplane are at the same location. Use the command 'load-airplane package airplane location' for this action. After loading, the package is not at the location anymore.
+
+3. To unload a package from a truck, both the truck and the package must be present at the location. Use the command 'unload-truck package truck location'. Once unloaded, the package is now at the location and not in the truck.
+
+4. To unload a package from an airplane, ensure that both the airplane and the package are at the location. Use 'unload-airplane package airplane location'. The package will then be at the location and not in the airplane anymore.
+
+5. To move a truck from one location to another within the same city, both locations must be in the same city, and the truck must be at the initial location. Use 'drive-truck truck location1 location2 city'. After driving, the truck will be at the new location.
+
+6. To fly an airplane from one airport to another, the airplane should be at the departure airport initially. Use the command 'fly-airplane airplane airport1 airport2'. Once flown, the airplane will be at the destination airport.
+
+These actions have specific conditions and restrictions that must be met to successfully move packages in the game.

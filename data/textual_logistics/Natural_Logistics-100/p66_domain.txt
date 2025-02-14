@@ -1,0 +1,13 @@
+In the world of logistics, I am tasked with moving packages between different locations using trucks and airplanes. Here are the actions I can perform: 
+
+1. I can load a package onto a truck at a specific location if both the package and the truck are present there. After loading, the package is no longer at the location but is in the truck. 
+
+2. Similarly, I can load a package onto an airplane at a location if both the package and airplane are at that location. Once loaded, the package will be in the airplane and not at the location anymore. 
+
+3. To unload a package from a truck or an airplane, the vehicle must be at the location, and the package needs to be inside the vehicle. After unloading, the package returns to being at the location and is no longer in the vehicle. 
+
+4. I have the ability to drive a truck from one location to another within the same city. This action is possible only if the truck is initially at the first location. After the move, the truck will be at the new location and not at the old one. 
+
+5. Alternatively, I can fly an airplane from one airport to another. This can only happen if the airplane is at the starting airport. Upon completing the flight, the airplane lands at the destination airport, departing from the original location.
+
+These actions help me efficiently transport packages and manage logistics across different locations and routes.

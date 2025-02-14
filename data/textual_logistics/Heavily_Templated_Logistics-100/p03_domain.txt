@@ -1,0 +1,34 @@
+I need to move packages between locations. Here are the actions I can do
+
+    Load an package onto a truck at a location (load-truck package truck location)
+    Load an package onto an airplane at a location (load-airplane package airplane location)
+    Unload an package from a truck at a location (unload-truck package truck location)
+    Unload an package from an airplane at a location (unload-airplane package airplane location)
+    Drive a truck from location1 to location2 in a city (drive-truck truck location1 location2 city)
+    Fly an airplane from airport1 to airport2 (fly-airplane airplane airport1 airport2)
+    
+I have the following restrictions on my actions:
+    To perform load-truck action, the following facts need to be true: o is an package, t is a truck, l is a location, the truck is at the location, the package is at the location.
+    Once load-truck action is performed the following facts will be true: the package is in the truck.
+    Once load-truck action is performed the following facts will be false: the package is at the location.
+
+    To perform load-airplane action, the following facts need to be true: o is an package, a is an airplane, l is a location, the airplane is at the location, the package is at the location.
+    Once load-airplane action is performed the following facts will be true: the package is in the airplane.
+    Once load-airplane action is performed the following facts will be false: the package is at the location.
+
+    To perform unload-truck action, the following facts need to be true: o is an package, t is a truck, l is a location, the truck is at the location, the package is in the truck.
+    Once unload-truck action is performed the following facts will be true: the package is at the location.
+    Once unload-truck action is performed the following facts will be false: the package is in the truck.
+
+    To perform unload-airplane action, the following facts need to be true: o is an package, a is a airplane, l is a location, the airplane is at the location, the package is in the airplane.
+    Once unload-airplane action is performed the following facts will be true: the package is at the location.
+    Once unload-airplane action is performed the following facts will be false: the package is in the airplane.
+
+    To perform drive-truck action, the following need to be true: t is a truck, l1 is a location, l2 is a location, c is a city, the truck is at l1, l1 is in the city, l2 is in the city.
+    Once drive-truck action is performed the following facts will be true: the truck is at l2.
+    Once drive-truck action is performed the following facts will be false: the truck is at l1.
+
+    To perform fly-airplane action, the following must be true: p is an airplane, a1 is an airport, a2 is an airport, the airplane is at a1.
+    Once fly-airplane is performed the following facts will be true: the airplane is at a2.
+    Once fly-airplane is performed the following facts will be false: the airplane is at a1.
+    

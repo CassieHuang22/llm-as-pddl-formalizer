@@ -1,0 +1,17 @@
+I need to move packages between locations. Here are the actions I can do
+
+    Load an package onto a truck at a location (load-truck package truck location)
+    Load an package onto an airplane at a location (load-airplane package airplane location)
+    Unload an package from a truck at a location (unload-truck package truck location)
+    Unload an package from an airplane at a location (unload-airplane package airplane location)
+    Drive a truck from location1 to location2 in a city (drive-truck truck location1 location2 city)
+    Fly an airplane from airport1 to airport2 (fly-airplane airplane airport1 airport2)
+    
+I have the following restrictions on my actions:
+    I can only load a package onto a truck or airplane if both the package and airplane are at the location.
+    Once I load the package in the truck or airplane, it is no longer at the location.
+    I can only unload a package from a truck or airplane if the truck or airplane is at the location and the package is in the truck or airplane.
+    Once I unload the truck or airplane, the object is at the location and no longer in the truck or airplane.
+    I can only drive a truck between locations if the truck is at the first location and both the first and second locations are in the same city. Once I drive a truck, the truck is in the second city and no longer in the first city.
+    I can only fly an airplane between two airports and the airplane is at the first airport.
+    Once I fly an airplane, the airplane is at the second airport and no longer at the first airport.

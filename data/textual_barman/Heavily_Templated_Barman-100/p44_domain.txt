@@ -1,0 +1,53 @@
+I am creating a cocktail from a set of ingredients. Here are the actions I can do
+
+    Grasp a container (grasp hand container)
+    Leave a container (leave hand container)
+    Fill a shot glass with with an ingredient (fill-shot shot ingredient hand1 hand2 dispenser)
+    Re-fill a shot glass with an ingredient (refill-shot shot ingredient hand1 hand2 dispenser)
+    Empty a shot glass (empty-shot hand shot beverage)
+    Clean a shot glass (clean-shot shot beverage hand hand2)
+    Pour an ingredient from a shot glass to a clean shaker (pour-shot-to-clean-shaker shot ingredient shaker hand level level1)
+    Pour an ingredient from a shot glass to a used shaker (pour-shot-to-used-shaker shot ingredient shaker hand level level1)
+    Empty a shaker (empty-shaker hand shaker cocktail level level1)
+    Clean a shaker (clean-shaker hand1 hand2 shaker)
+    Shake a shaker (shaker cocktil ingredient1 ingredient2 shaker hand1 hand2)
+    Pour a cocktail from a shaker to a shot glass (pour-shaker-to-shot beverage shot hand shaker level level1)
+
+
+I have the following restrictions on my actions:
+    To perform Grasp action, the following facts need to be true: container on table, hand empty.
+    Once Grasp action is performed the following facts will be true: hand holding container.
+    Once Grasp action is performed the following facts will be false: container on table, hand empty.
+    To perform Leave action, the following facts need to be true: hand holding container.
+    Once Leave action is performed the following facts will be true: hand empty, container on table.    
+    Once Leave action is performed the following facts will be false: hand holding container.
+    To perform Fill-shot action, the following needs to be true: hand1 holding shot glass, hand2 empty, dispenser dispenses ingredient, empty shot glass, clean shot glass.
+    Once Fill-shot action is performed the following will be true: shot glass contains ingredient, shot glass used with ingredient.
+    Once Fill-shot action is performed the following will be false: empty shot glass, clean shot glass.
+    To perform Refill-shot action, the following needs to be true: hand1 holding shot glass, hand2 empty, dispenser dispenses ingredient, empty shot glass, shot glass used with ingredient.
+    Once Refill-shot action is performed the following will be true: shot glass contains ingredient.
+    Once Refill action is performed the following will be false: empty shot glass.
+    To perform Empty-shot action, the following needs to be true: hand holding shot glass, shot glass contains beverage.
+    Once Empty-shot action is performed the following will be true: empty shot glass.
+    Once Empty-shot action is performed the following will be false: shot glass contains beverage.
+    To perform Clean-shot action, the following needs to be true: hand1 holding shot glass, hand2 empty, empty shot glass, shot glass used with beverage.
+    Once Clean-shot action is performed the following will be true: clean shot glass.
+    Once Clean-shot action is performed the following will be false: shot glass used with beverage
+    To perform Pour-shot-to-clean-shaker action, the following needs to be true: hand1 holding shot glass, shot glass contains ingredient, empty shaker, clean shaker, shaker-level of shaker is l, next level from l is l1.
+    Once Pour-shot-to-clean-shaker action is performed the following will be true: empty shot glass, shaker contains ingredient, unshaked shaker, shaker-level of shaker is l1.
+    Once Pour-shot-to-clean-shaker action is performed the following will be false: shot glass contains ingredient, empty shaker, clean shaker, shaker-level of shaker is l.
+    To perform Pour-shot-to-used-shaker action, the following needs to be true: hand1 holding shot glass, shot glass contains ingredient, unshaked shaker, shaker-level of shaker is l, next level from l is l1.
+    Once Pour-shot-to-used-shaker action is performed the following will be true: shaker contains ingredient, empty shot glass, shaker-level of shaker is l1.
+    Once Pour-shot-to-used-shaker action is performed the following will be false: shot glass contains ingredient, shaker-level of shaker is l.
+    To perform Empty-shaker action, the following needs to be true: hand holding shaker, shaker contains cocktail, shaked shaker, shaker-level of shaker is l, shaker-empty-level of shaker is l1.
+    Once Empty-shaker action is performed the following will be true: shaker-level of shaker is l1, empty shaker.
+    Once Empty-shaker action is performed the following will be false: shaked shaker, shaker-level of shaker is l, shaker contains cocktail.
+    To perform Clean-shaker action, the following needs to be true: hand1 holding shaker, hand2 empty, empty shaker.
+    Once Clean-shaker action is performed the following will be true: clean shaker.
+    To perform Shake action, the following needs to be true: hand1 holding shaker, empty hand2, shaker contains ingredient1, shaker contains ingredient2, part 1 of cocktail is ingredient1, part 2 of cocktail is ingredient2, unshaked shaker.
+    Once Shake action is performed the following will be true: shaked shaker, shaker contains cocktail.
+    Once Shake action is performed the following will be false: unshaked shaker, shaker contains ingredient1, shaker contains ingredient2.
+    To perform Pour-shaker-to-shot action, the following needs to be true: hand holding shaker, shaked shaker, empty shot glass, clean shot glass, shaker contains cocktail, shaker level of shaker is l, next level from l1 is l.
+    Once Pour-shaker-to-shot action is performed the following will be true: shot glass contains cocktail, shot glass used with cocktail, shaker-level of shaker is l1.
+    Once Pour-shaker-to-shot action is performed the following will be false: clean shot glass, empty shot glass, shaker-level of shaker is l.
+    

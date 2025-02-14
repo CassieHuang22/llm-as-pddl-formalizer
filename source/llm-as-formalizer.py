@@ -11,10 +11,14 @@ import asyncio
 
 import argparse
 
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+
+quantization_config = BitsAndBytesConfig(load_in_8bit=True)
+
 Parser = argparse.ArgumentParser()
-Parser.add_argument("--domain", help="which domain to evaluate", choices=["blocksworld", "mystery_blocksworld"])
-Parser.add_argument("--model", help="which model to use", choices=["gpt-3.5-turbo", "gpt-4o-mini", "gpt-4o", "o1-preview", "google/gemma-2-9b-it", "google/gemma-2-27b-it", "meta-llama/Meta-Llama-3.1-8B-Instruct", "meta-llama/Llama-3.1-70B-Instruct"])
-Parser.add_argument("--data", help="which data to formalize", choices=["Heavily-Templated_BlocksWorld-111", "Moderately_Templated_BlocksWorld-111", "Natural_BlocksWorld-111", "Heavily_Templated_Mystery_BlocksWorld-100"])
+Parser.add_argument("--domain", help="which domain to evaluate", choices=["blocksworld", "mystery_blocksworld", "barman", "logistics"])
+Parser.add_argument("--model", help="which model to use", choices=["gpt-3.5-turbo", "gpt-4o-mini", "gpt-4o", "o1-preview", "google/gemma-2-9b-it", "google/gemma-2-27b-it", "meta-llama/Meta-Llama-3.1-8B-Instruct", "meta-llama/Llama-3.1-70B-Instruct", "meta-llama/Llama-3.1-405B-Instruct", "meta-llama/Llama-3.3-70B-Instruct", "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B", "deepseek-ai/DeepSeek-R1-Distill-Llama-70B", "o3-mini", "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"])
+Parser.add_argument("--data", help="which data to formalize", choices=["Heavily_Templated_BlocksWorld-100", "Moderately_Templated_BlocksWorld-100", "Natural_BlocksWorld-100", "Heavily_Templated_Mystery_BlocksWorld-100", "Heavily_Templated_Barman-100", "Heavily_Templated_Logistics-100", "Moderately_Templated_Logistics-100", "Natural_Logistics-100"])
 Parser.add_argument("--index_start", help="index to start generating result from (inclusive)")
 Parser.add_argument("--index_end", help="index to end generating result from (exclusive)")
 
@@ -25,13 +29,15 @@ DATA = args.data
 INDEX_START = eval(args.index_start)
 INDEX_END = eval(args.index_end)
 
-OPEN_SOURCED_MODELS = ["meta-llama/Meta-Llama-3.1-8B-Instruct", "google/gemma-2-9b-it", "meta-llama/Llama-3.1-70B-Instruct", "google/gemma-2-27b-it"]
-PROMPT = "You are a PDDL expert."
+OPEN_SOURCED_MODELS = ["meta-llama/Meta-Llama-3.1-8B-Instruct", "google/gemma-2-9b-it", "meta-llama/Llama-3.1-70B-Instruct", "google/gemma-2-27b-it", "meta-llama/Llama-3.1-405B-Instruct", "meta-llama/Llama-3.3-70B-Instruct", "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B", "deepseek-ai/DeepSeek-R1-Distill-Llama-70B", "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"]
+PROMPT = "You are a PDDL expert. Respond only as shown."
 if MODEL in OPEN_SOURCED_MODELS:
-    if "llama" in MODEL:
-        ENGINE = HuggingEngine(model_id = MODEL, prompt_pipeline=LLAMA3_PIPELINE, use_auth_token=True, model_load_kwargs={"device_map": "auto"})
+    if "meta-llama" in MODEL:
+        ENGINE = HuggingEngine(model_id = MODEL, prompt_pipeline=LLAMA3_PIPELINE, use_auth_token=True, model_load_kwargs={"device_map": "auto", "quantization_config": quantization_config})
     elif "gemma" in MODEL:
         ENGINE = HuggingEngine(model_id = MODEL, prompt_pipeline=GEMMA_PIPELINE, use_auth_token=True)
+    elif "deepseek-ai" in MODEL:
+        ENGINE = HuggingEngine(model_id = MODEL, prompt_pipeline=None, use_auth_token=True)
     AI = Kani(ENGINE, system_prompt=PROMPT)
 else:
     OPENAI_API_KEY = open(f'../../_private/key.txt').read()
@@ -91,16 +97,16 @@ async def run_formalizer_open_sourced(domain, data, problem):
     problem_description = open(f'../data/textual_{domain}/{data}/{problem}_problem.txt').read()
 
     message = f"Here is a game we are playing.\n{domain_description}\n{problem_description}\nWrite the domain and problem files in minimal PDDL."
-
     response = await AI.chat_round_str(message)
+
 
     try:
         _, domain_file, _, problem_file, _ = response.split('```')
     except:
-        _, pddl, _ = response.split('```')
-        problem_file_index = pddl.index("(define (problem ")
-        domain_file = pddl[ : problem_file_index].strip()
-        problem_file = pddl[problem_file_index : ].strip()
+        domain_file_index = response.index("(define (domain")
+        problem_file_index = response.index("(define (problem ")
+        domain_file = response[ domain_file_index: problem_file_index].strip()
+        problem_file = response[problem_file_index : ].strip()
     domain_file = domain_file.replace("pddl", "").replace("lisp", "")
     problem_file = problem_file.replace("pddl", "").replace("lisp", "")
 

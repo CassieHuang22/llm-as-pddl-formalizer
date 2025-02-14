@@ -1,0 +1,11 @@
+In the Logistics game, you are tasked with moving packages between various locations using different modes of transportation. You have several actions available to achieve this: 
+
+1. To transport a package using a truck, you must load the package onto the truck at a specific location, but ensure both the package and the truck are present at that location. Once loaded, the package is no longer at the original location. You can then unload the package at the desired location, provided the truck and the package are both there.
+
+2. Similarly, for air transportation, load the package onto an airplane at the designated location. Again, the package and airplane must be co-located. Once loaded, the package is removed from the initial location. You can then unload it at the target location if both the package and airplane are present there.
+
+3. Moving a truck from one place to another within the same city involves driving it. However, ensure the truck starts at the initial location, and both starting and destination points exist within the same city. The truck is considered to have left the starting point upon arrival at the destination.
+
+4. For air travel between cities, fly the airplane from one airport to another. The airplane must start at the initial airport, and upon completing the journey, it will reside at the destination airport, not the original.
+
+These actions ensure the proper management and movement of your packages within the game, adhering to the rules of each transportation method.

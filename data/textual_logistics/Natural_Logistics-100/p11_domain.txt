@@ -1,0 +1,11 @@
+In the Logistics game, your objective is to transport packages between different locations efficiently. You have several actions at your disposal to achieve this goal: 
+
+1. To load a package onto a truck at a specific location, the package and the truck must both be present there. Similarly, loading a package onto an airplane requires both the package and airplane to be at the same location.
+
+2. Unloading a package from a truck or an airplane can only be done if the transportation vehicle is at the intended location and the package is inside it. Upon unloading, the package is placed at the location and is no longer inside the vehicle.
+
+3. When driving a truck, ensure that the truck is at the initial location and that both the starting and destination points are within the same city. After driving, the truck relocates to the new location.
+
+4. Flying an airplane from one airport to another requires the airplane to be at the starting airport. After flying, the airplane lands at the destination airport and leaves the original airport.
+
+Remember, packages and vehicles change their locations based on the actions performed, so plan your moves to efficiently manage your logistics.

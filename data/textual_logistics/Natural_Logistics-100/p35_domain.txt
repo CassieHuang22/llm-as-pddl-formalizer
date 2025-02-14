@@ -1,0 +1,19 @@
+In the Logistics game, your goal is to transport packages between different locations using trucks and airplanes. Here are the actions you can take to achieve this: 
+
+1. To load a package onto a truck at a specific location, use the action 'load-truck'. You can only perform this action if both the package and the truck are present at that location.
+
+2. For loading a package onto an airplane, use 'load-airplane'. Ensure both the package and the airplane are at the specified location before proceeding.
+
+3. To unload a package from a truck at a location, use 'unload-truck'. This action is valid only if the truck and the package are both currently at that location.
+
+4. Use 'unload-airplane' to remove a package from an airplane at a location. The airplane and package must be at the location to perform this action.
+
+5. To move a truck from one location to another within the same city, use 'drive-truck'. You can drive the truck only if it's at the starting location, and both locations must be in the same city. After this action, the truck will reside at the new location.
+
+6. To fly an airplane from one airport to another, use 'fly-airplane'. Ensure the airplane is at the departure airport before taking off. Once the airplane lands, it will be located at the destination airport.
+
+These actions come with specific restrictions: 
+- Loading a package onto a vehicle (truck or airplane) requires both the package and the vehicle to be present at the same location. Once loaded, the package is no longer at the location but inside the vehicle.
+- Unloading a package involves ensuring the vehicle and package are at the same location. Once unloaded, the package is at the location and no longer inside the vehicle.
+- Driving a truck can only occur between two locations within the same city, and the truck must start at the initial location. Post driving, the truck is at the new location.
+- Flying an airplane is restricted to airport-to-airport travel, beginning at the departure airport, and upon completion, the airplane is at the destination.

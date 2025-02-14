@@ -1,0 +1,11 @@
+In the Logistics game, we begin with several packages and vehicles distributed across different cities and their respective locations. Specifically, we have: Package15 through Package1, which are all designated as packages, and City4 through City1, each identified as a city. For transportation, we have Truck45 to Truck1, as well as Plane5 to Plane1. The locations within each city are denoted as CityX-1, CityX-2, and CityX-3, where the '-3' suffix indicates an airport. 
+
+Initially, each location is part of a specific city: City4-3, City4-2, and City4-1 belong to City4; City3-3, City3-2, and City3-1 belong to City3; City2-3, City2-2, and City2-1 belong to City2; and City1-3, City1-2, and City1-1 belong to City1.
+
+The aircraft are stationed at the following airports: Plane5 is at City1-3, Plane4 at City4-3, Plane3 at City4-3, Plane2 at City3-3, and Plane1 at City4-3.
+
+The trucks are located across various points: Truck45 is at City4-2, Truck44 at City3-2, Truck43 at City2-2, Truck42 at City1-1, Truck41 at City1-3, Truck40 at City3-2, and so on, each positioned at distinct locations across the four cities. 
+
+The initial positions of the packages are as follows: Package15 is at City1-2, Package14 at City3-1, Package13 and Package12 at City1-1, Package11 at City3-3, Package10 alongside Package8 and Package2 are at City4-2, Package9 and Package6 at City3-2, Package7 at City4-3, Package5 at City2-2, Package4 at City2-3, Package3 at City1-3, and Package1 at City2-1. 
+
+Our objective is to achieve specific delivery goals: Package15, Package14, Package10, Package9, and Package8 should all be located at City4-2; Package13 needs to reach City4-3; Package12 is to be at City2-2; and Package11 must arrive at City2-1.
