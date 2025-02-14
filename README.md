@@ -31,7 +31,7 @@ In `/data` the following folders can be found:
 - `/textual_barman`: textual descriptions from Barman domain
     * `Heavily_Templated_Barman-100`: Templated domain and problem descriptions that sound the most similar to PDDL
     * `Barman-100_PDDL`: Groundtruth PDDL for Barman-100 data.
-- `textual_logistics`: textual descriptions from Logistics domain
+- `/textual_logistics`: textual descriptions from Logistics domain
     * `Logistics-100_PDDL`: Groundtruth PDDL for Logistics-100 data.
     * `Heavily_Templated_Logistics-100`: Templated domain and problem descriptions that sound the most similar to PDDL.
     * `Moderately_Templated_Logistics-100`: Templated domain and problem descriptions that sounds natural but still explicitly list all preconditions and effects.
