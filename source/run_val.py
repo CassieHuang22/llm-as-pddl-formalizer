@@ -23,7 +23,10 @@ def standardize_blocks(plan):
     return new_plan
 
 def plan_to_path(domain, plan, plan_filepath):
-    plan = plan.strip().lower().replace('-', '').replace('_', '')
+    if domain not in ["barman", "logistics"]:
+        plan = plan.strip().lower().replace('-', '').replace('_', '')
+    else:
+        plan = plan.strip().lower()
     if domain == "blocksworld":
         plan = standardize_blocks(plan)
     with open(plan_filepath, 'w') as plan_file:
@@ -37,6 +40,10 @@ def validate_plan(domain, problem_file_path, plan_filepath):
         domain_path = '../data/textual_blocksworld/BlocksWorld-111_PDDL/domain.pddl'
     elif domain == "mystery_blocksworld":
         domain_path = '../data/textual_mystery_blocksworld/Mystery_BlocksWorld-100_PDDL/domain.pddl'
+    elif domain == "barman":
+        domain_path = '../data/textual_barman/Barman-100_PDDL/domain.pddl'
+    elif domain == "logistics":
+        domain_path = '../data/textual_logistics/Logistics-100_PDDL/domain.pddl'
     
     command = [validate_executable, "-v", domain_path, problem_file_path, plan_filepath]
     try:
@@ -78,13 +85,25 @@ def validate_plan_batch(domain, data, model, index_start, index_end, prediction_
                 problem_file = f'../data/textual_blocksworld/BlocksWorld-111_PDDL/{problem_name}.pddl'
             elif domain == "mystery_blocksworld":
                 problem_file = f'../data/textual_mystery_blocksworld/Mystery_BlocksWorld-100_PDDL/{problem_name}.pddl'
+            elif domain == "barman":
+                problem_file = f'../data/textual_barman/Barman-100_PDDL/{problem_name}.pddl'
+            elif domain == "logistics":
+                problem_file = f'../data/textual_logistics/Logistics-100_PDDL/{problem_name}.pddl'
 
             plan = open(plan_file).read()
-            standard_plan, _ = plan_to_path(domain, plan, plan_file)
+
+            if prediction_type == "llm-as-formalizer":
+                new_plan_file = f'../output/llm-as-formalizer/{domain}/{data}/{model_name}/{problem_name}/{problem_name}_{model_name}_plan_VAL.txt'
+            else:
+                new_plan_file = f'../output/llm-as-planner/{domain}/{data}/{model_name}/{problem_name}_{model_name}_plan_VAL.txt'
+
+
+            standard_plan, _ = plan_to_path(domain, plan, new_plan_file)
             plans.append(standard_plan)
-            val_result = validate_plan(domain, problem_file, plan_file)
+            val_result = validate_plan(domain, problem_file, new_plan_file)
             val_results.append(val_result)
-            if "Error" in val_result:
+
+            if "Error" in val_result or "Failed" in val_result:
                 is_plan_correct.append("no")
             else:
                 is_plan_correct.append("yes")

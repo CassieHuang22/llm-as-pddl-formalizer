@@ -40,6 +40,10 @@ def run_solver(domain, data, problem, model, solver):
     
 
     result = celery_result.json()['result']
+
+    if "Error" in celery_result.json().keys():
+        return False, "timeout"
+    
     if solver == "lama-first":
         if not result['output']:
             if not result['stderr']:
@@ -51,7 +55,7 @@ def run_solver(domain, data, problem, model, solver):
     elif solver == "dual-bfws-ffparser":
         if result['output'] == {'plan': ''}:
             if not result['stderr']:
-                if "NOTFOUND" in result['stdout'] or "No plan" in result['stdout'] or "unknown" in result['stdout'] or "undeclared" in result['stdout'] or "declared twice" in result['stdout'] or "check input files" in result['stdout']:
+                if "NOTFOUND" in result['stdout'] or "No plan" in result['stdout'] or "unknown" in result['stdout'] or "undeclared" in result['stdout'] or "declared twice" in result['stdout'] or "check input files" in result['stdout'] or "does not match" in result['stdout'] or "timeout" in result['call']:
                     plan_found = False
                 else:
                     plan_found = True
