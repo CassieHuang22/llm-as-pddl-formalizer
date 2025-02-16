@@ -11,6 +11,10 @@ OPENAI_API_KEY = open(f'../../_private/key.txt').read()
 ```
 pip install "kani[all]" torch 'accelerate>=0.26.0'
 ```
+- bitsandbytes: install bitsandbytes for quantization using the following:
+```
+pip install transformers accelerate bitsandbytes>0.37.0
+```
 - VAL: follow VAL GitHub repository for instructions to install VAL, then change the following line (line 35 in `source/run_val.py`) to the VAL executable:
 ```
 validate_executable = "../../VAL/build/macos64/Release/bin/Validate"
