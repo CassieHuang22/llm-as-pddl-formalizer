@@ -1,0 +1,3 @@
+
+domain: syntax error in line 22, '(':
+domain definition expected

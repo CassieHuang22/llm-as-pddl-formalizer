@@ -1,0 +1,15 @@
+
+predicate HOLDING is declared to use unknown or empty type BLOCK
+
+
+predicate ON is declared to use unknown or empty type BLOCK
+
+
+predicate ON-TABLE is declared to use unknown or empty type BLOCK
+
+
+predicate CLEAR is declared to use unknown or empty type BLOCK
+
+
+predicate CLEAR is declared to have 0 (not 1) arguments. check input files
+

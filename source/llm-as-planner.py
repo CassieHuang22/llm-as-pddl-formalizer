@@ -41,10 +41,10 @@ if MODEL in OPEN_SOURCED_MODELS:
     AI = Kani(ENGINE, system_prompt=PROMPT)
 else:
     if MODEL == "deepseek-reasoner":
-        OPENAI_API_KEY = open('../../../_private/key_deepseek.txt').read()
+        OPENAI_API_KEY = open('../../_private/key_deepseek.txt').read()
         client = OpenAI(api_key=OPENAI_API_KEY, base_url="https://api.deepseek.com")
     else:
-        OPENAI_API_KEY = open(f'../../../_private/key.txt').read()
+        OPENAI_API_KEY = open(f'../../_private/key.txt').read()
         client = OpenAI(api_key=OPENAI_API_KEY)
 
 
