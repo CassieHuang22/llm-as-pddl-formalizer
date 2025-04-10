@@ -6,7 +6,7 @@ import argparse
 
 Parser = argparse.ArgumentParser()
 Parser.add_argument("--domain", help="which domain to evaluate", choices=["blocksworld", "mystery_blocksworld", "barman", "logistics"])
-Parser.add_argument("--model", help="which model to use", choices=["gpt-3.5-turbo", "gpt-4o-mini", "gpt-4o", "o1-preview", "google/gemma-2-9b-it", "google/gemma-2-27b-it", "meta-llama/Meta-Llama-3.1-8B-Instruct", "meta-llama/Llama-3.1-70B-Instruct", "meta-llama/Llama-3.1-405B-Instruct", "meta-llama/Llama-3.3-70B-Instruct", "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B", "deepseek-ai/DeepSeek-R1-Distill-Llama-70B", "o3-mini", "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"])
+Parser.add_argument("--model", help="which model to use", choices=["gpt-3.5-turbo", "gpt-4o-mini", "gpt-4o", "o1-preview", "google/gemma-2-9b-it", "google/gemma-2-27b-it", "meta-llama/Meta-Llama-3.1-8B-Instruct", "meta-llama/Llama-3.1-70B-Instruct", "meta-llama/Llama-3.1-405B-Instruct", "meta-llama/Llama-3.3-70B-Instruct", "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B", "deepseek-ai/DeepSeek-R1-Distill-Llama-70B", "o3-mini", "deepseek-ai/DeepSeek-R1-Distill-Llama-8B", "deepseek-reasoner"])
 Parser.add_argument("--data", help="which data to formalize", choices=["Heavily_Templated_BlocksWorld-100", "Moderately_Templated_BlocksWorld-100", "Natural_BlocksWorld-100", "Heavily_Templated_Mystery_BlocksWorld-100", "Heavily_Templated_Barman-100", "Heavily_Templated_Logistics-100", "Moderately_Templated_Logistics-100", "Natural_Logistics-100"])
 Parser.add_argument("--index_start", help="index to start generating result from (inclusive)")
 Parser.add_argument("--index_end", help="index to end generating result from (exclusive)")
@@ -56,7 +56,10 @@ def run_solver(domain, data, problem, model, solver):
         if result['output'] == {'plan': ''}:
             if not result['stderr']:
                 if "NOTFOUND" in result['stdout'] or "No plan" in result['stdout'] or "unknown" in result['stdout'] or "undeclared" in result['stdout'] or "declared twice" in result['stdout'] or "check input files" in result['stdout'] or "does not match" in result['stdout'] or "timeout" in result['call']:
-                    plan_found = False
+                    if "Plan found with cost: 0" in result['stdout']:
+                        plan_found = True
+                    else:
+                        plan_found = False
                 else:
                     plan_found = True
                 return plan_found, result['stdout']

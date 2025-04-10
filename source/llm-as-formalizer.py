@@ -17,7 +17,7 @@ quantization_config = BitsAndBytesConfig(load_in_8bit=True)
 
 Parser = argparse.ArgumentParser()
 Parser.add_argument("--domain", help="which domain to evaluate", choices=["blocksworld", "mystery_blocksworld", "barman", "logistics"])
-Parser.add_argument("--model", help="which model to use", choices=["gpt-3.5-turbo", "gpt-4o-mini", "gpt-4o", "o1-preview", "google/gemma-2-9b-it", "google/gemma-2-27b-it", "meta-llama/Meta-Llama-3.1-8B-Instruct", "meta-llama/Llama-3.1-70B-Instruct", "meta-llama/Llama-3.1-405B-Instruct", "meta-llama/Llama-3.3-70B-Instruct", "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B", "deepseek-ai/DeepSeek-R1-Distill-Llama-70B", "o3-mini", "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"])
+Parser.add_argument("--model", help="which model to use", choices=["gpt-3.5-turbo", "gpt-4o-mini", "gpt-4o", "o1-preview", "google/gemma-2-9b-it", "google/gemma-2-27b-it", "meta-llama/Meta-Llama-3.1-8B-Instruct", "meta-llama/Llama-3.1-70B-Instruct", "meta-llama/Llama-3.1-405B-Instruct", "meta-llama/Llama-3.3-70B-Instruct", "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B", "deepseek-ai/DeepSeek-R1-Distill-Llama-70B", "o3-mini", "deepseek-ai/DeepSeek-R1-Distill-Llama-8B", "deepseek-reasoner"])
 Parser.add_argument("--data", help="which data to formalize", choices=["Heavily_Templated_BlocksWorld-100", "Moderately_Templated_BlocksWorld-100", "Natural_BlocksWorld-100", "Heavily_Templated_Mystery_BlocksWorld-100", "Heavily_Templated_Barman-100", "Heavily_Templated_Logistics-100", "Moderately_Templated_Logistics-100", "Natural_Logistics-100"])
 Parser.add_argument("--index_start", help="index to start generating result from (inclusive)")
 Parser.add_argument("--index_end", help="index to end generating result from (exclusive)")
@@ -40,8 +40,12 @@ if MODEL in OPEN_SOURCED_MODELS:
         ENGINE = HuggingEngine(model_id = MODEL, prompt_pipeline=None, use_auth_token=True)
     AI = Kani(ENGINE, system_prompt=PROMPT)
 else:
-    OPENAI_API_KEY = open(f'../../_private/key.txt').read()
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    if MODEL == "deepseek-reasoner":
+        OPENAI_API_KEY = open('../../../_private/key_deepseek.txt').read()
+        client = OpenAI(api_key=OPENAI_API_KEY, base_url="https://api.deepseek.com")
+    else:
+        OPENAI_API_KEY = open(f'../../../_private/key.txt').read()
+        client = OpenAI(api_key=OPENAI_API_KEY)
 
 def run_formalizer_gpt(domain, data, problem, model, force_json=False):
     output_format = "json_object" if force_json else "text"
@@ -65,7 +69,7 @@ def run_formalizer_gpt(domain, data, problem, model, force_json=False):
 
     return_string = completion.choices[0].message.content
 
-    if model == 'o1-preview':
+    if model in ['o1-preview', 'deepseek-reasoner']:
         start_index = return_string.find('{')
         end_index = return_string.find('}')
         json_string = return_string[start_index:end_index+1]
@@ -129,7 +133,7 @@ async def run_formalizer_open_sourced(domain, data, problem):
 def run_gpt_batch(domain, model, data, index_start, index_end):
     for problem_number in range(index_start, index_end):
         problem_name = 'p0' + str(problem_number) if problem_number < 10 else 'p' + str(problem_number)
-        force_json = True if model != "o1-preview" else False
+        force_json = True if model not in ["o1-preview", "deepseek-reasoner"] else False
         print(f"Running {problem_name}")
         run_formalizer_gpt(domain=domain, data=data, problem=problem_name, model=model, force_json=force_json)
 
